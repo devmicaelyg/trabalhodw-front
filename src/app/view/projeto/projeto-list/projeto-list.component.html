@@ -1,0 +1,35 @@
+  <div class="container">
+    <div class="d-flex justify-content-around mt-5 mb-5">
+        <h1>Projetos</h1>
+        <button mat-raised-button class="success-button" (click)="criarProjeto()">Cadastrar novo projeto</button>
+    </div>
+    <div>
+      <table class="table table-hover">
+        <thead>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Ações</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let projeto of projetos">
+            <td> {{ projeto.id }}</td>
+            <td> {{ projeto.nome }}</td>
+            <td> {{ projeto.descricao }}</td>
+            <td class="column-actions">
+              <button class="actions edit-button"
+                matTooltip="Editar/Ver Detalhes"
+                (click)="editarProjeto(projeto)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="actions cancel-button"
+                matTooltip="Deletar Projeto" 
+                (click)="delete(projeto)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

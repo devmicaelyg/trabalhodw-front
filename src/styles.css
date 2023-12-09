@@ -1,4 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+  height: 100%;
+}
+
+body { 
+  margin: 0; 
+  font-family: 'Montserrat';
+}
+
+/*** TIPOGRAFRIA *****/ 
+
+h1, span, div { 
+  font-family: 'Montserrat';;
+}
+
+/*** BOTÕES ****/
+
+button  { 
+  font-family: 'Montserrat';
+  width: 180px;
+  height: 60px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  border-radius: 7px;
+  font-size: 18px;
+  padding: 10px;
+
+  transition: background-color 0.3s ease;
+}
+
+.actions { 
+  width: 60px;
+  border-radius: 50px;
+}
+
+.success-button {
+    background: #2f9e41;
+}
+
+.success-button:hover {
+  background: #237e35; /* Cor diferente para o hover */
+}
+
+.cancel-button {
+  background: red;
+}
+
+.edit-button {
+  background-color: darkorange;
+}
+
+.cancel-button:hover {
+  background: darkred; /* Cor diferente para o hover */
+}
+
+.column-actions { 
+  display: flex;
+  gap: 6px;
+}
