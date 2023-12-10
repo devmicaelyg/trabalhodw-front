@@ -12,6 +12,10 @@ mat-drawer-container {
   font-family: 'Montserrat' ;
 }
 
+mat-drawer-content{
+  font-size: large;
+}
+
 mat-drawer {
   width: 400px;
 }
