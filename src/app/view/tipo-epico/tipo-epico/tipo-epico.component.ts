@@ -1,46 +1,48 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Projeto } from '../model/Projeto';
+
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ProjetoService } from '../service/projeto.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificacaoService } from '../../../services/notificacao.service';
+import { TipoEpico } from '../model/TipoEpico';
+import { TipoEpicoService } from '../service/tipo-epico.service';
 import Swal from 'sweetalert2';
 
 export interface DialogData {
-  projeto: Projeto
+  tipo: TipoEpico
 }
-
 @Component({
-  selector: 'app-projeto',
   standalone: true,
   imports: [HttpClientModule, CommonModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule],
-  templateUrl: './projeto.component.html',
-  styleUrl: './projeto.component.css',
-  providers: [ ProjetoService, NotificacaoService ]
+  selector: 'app-tipo-epico',
+  templateUrl: './tipo-epico.component.html',
+  styleUrl: './tipo-epico.component.css',
+  providers: [TipoEpicoService, NotificacaoService]
 })
-export class ProjetoComponent implements OnInit {
+export class TipoEpicoComponent implements OnInit {
   
-  titulo: string = "Cadastro de Projeto"; 
-  projetoForm!: FormGroup;
+  titulo: string = "Cadastro de Tipo de Épico"; 
+  tipoForm!: FormGroup;
   isEdit: boolean = false; 
 
   constructor( 
-    public dialogRef: MatDialogRef<ProjetoComponent>,
+    public dialogRef: MatDialogRef<TipoEpicoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
-    private projetoService:ProjetoService,
+    private service:TipoEpicoService,
     private notificacao: NotificacaoService
   ){}
      
   ngOnInit(): void {
-    if(this.data.projeto != null){
-      this.titulo = "Edição de Projeto"
-      this.getById(this.data.projeto.id)
+    console.log(this.data)
+    
+    if(this.data.tipo != null){
+      this.titulo = "Edição de Tipo de Épico"
+      this.getById(this.data.tipo.id)
       this.isEdit = true; 
     }
 
@@ -48,57 +50,54 @@ export class ProjetoComponent implements OnInit {
   }
 
   form(){
-    this.projetoForm = this.fb.group({
-      nome: [null, Validators.required],
+    this.tipoForm = this.fb.group({
       descricao: [null, Validators.required]
     })
   }
 
   cadastrar(){
-    if(this.projetoForm.invalid){
-      this.formularioInvalido()
-      return
+    if(this.tipoForm.invalid){
+      this.formularioInvalido();
+      return; 
     }
 
-    this.projetoService.create(this.projetoForm.value as Projeto).subscribe({
+    this.service.create(this.tipoForm.value as TipoEpico).subscribe({
       next: (res) => {
         console.log(res)
         this.dialogRef.close(true)
-        this.notificacao.alert("Projeto cadastrado com sucesso!", true)
+        this.notificacao.alert("Tipo de Épico cadastrado com sucesso!", true)
       },
       error: (error) => {
         console.log(error)
-        this.notificacao.alert("Aconteceu um erro ao tentar cadastrar o projeto. Tente novamente mais tarde!", false)
+        this.notificacao.alert("Aconteceu um erro ao tentar cadastrar o tipo de épico. Tente novamente mais tarde!", false)
       }
     })
   }
 
   editar(){
-    if(this.projetoForm.invalid){
-      this.formularioInvalido()
-      return
+    if(this.tipoForm.invalid){
+      this.formularioInvalido();
+      return; 
     }
-    
-    this.projetoService.update(this.data.projeto.id, this.projetoForm.value as Projeto).subscribe({
+
+    this.service.update(this.data.tipo.id, this.tipoForm.value as TipoEpico).subscribe({
       next:() => {
         this.dialogRef.close(true)
-        this.notificacao.alert("Projeto editado com sucesso!", true)
+        this.notificacao.alert("Tipo de Épico editado com sucesso!", true)
       },
       error: (error) => {
         console.log(error)
-        this.notificacao.alert("Aconteceu um erro ao tentar editar o projeto. Tente novamente mais tarde!", false)
+        this.notificacao.alert("Aconteceu um erro ao tentar editar o tipo de épico. Tente novamente mais tarde!", false)
       }
     })
   }
 
   getById(id: string | undefined){
-    console.log(id);
-    this.projetoService.getById(id).subscribe({
+    this.service.getById(id).subscribe({
       next: (res) => {
-        this.projetoForm.controls["nome"].setValue(this.data.projeto.nome)
-        this.projetoForm.controls["descricao"].setValue(this.data.projeto.descricao)
+        this.tipoForm.controls["descricao"].setValue(this.data.tipo.descricao)
       }, error: (error) => {
-        console.log(error)
+        this.notificacao.alert("Aconteceu um erro ao tentar buscar o tipo de epico. Tente novamente mais tarde!", false)
       }
     })
   }
@@ -117,7 +116,7 @@ export class ProjetoComponent implements OnInit {
       if (result.isConfirmed) {
         this.dialogRef.close();
       } 
-    });
+    }); 
   }
 
   formularioInvalido(){
@@ -127,5 +126,4 @@ export class ProjetoComponent implements OnInit {
       text: "Todos os campos do formulário são obrigatórios.",
     });
   }
-
 }

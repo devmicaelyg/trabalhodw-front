@@ -56,8 +56,7 @@ export class ProjetoListComponent implements OnInit  {
 
   editarProjeto(projeto: Projeto){
     const dialogRef = this.dialog.open(ProjetoComponent, {
-      data: {projeto: projeto},
-      hasBackdrop: false
+      data: {projeto}
     });
 
     dialogRef.afterClosed().subscribe(result => {
