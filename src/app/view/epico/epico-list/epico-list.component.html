@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="d-flex justify-content-around mt-5 mb-5">
+      <h1>Épicos</h1>
+      <button mat-raised-button class="success-button novo" (click)="criar()">
+        Cadastrar novo épico
+      </button>
+  </div>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <th>Descrição</th>
+        <th>Relevancia</th>
+        <th>Categoria</th>
+        <th>Tipo Epico</th>
+        <th>Projeto</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let epico of epicos">
+          <td> {{ epico.descricao }}</td>
+          <td> {{ epico.relevancia }}</td>
+          <td> {{ epico?.categoria }}</td>
+          <td> {{ epico.tipoEpico.descricao }} </td>
+          <td> {{ epico.projeto.nome }} </td>
+          <td class="column-actions">
+            <button class="actions edit-button"
+              matTooltip="Editar/Ver Detalhes"
+              (click)="editar(epico)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="actions cancel-button"
+              matTooltip="Deletar" 
+              (click)="deletar(epico)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
