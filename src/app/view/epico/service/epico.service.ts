@@ -22,6 +22,10 @@ export class EpicoService {
     return this.http.get<EpicoOutput>(`${this.url}?Id=${id}`);
   }
 
+  getByProjetoId(id: string | undefined): Observable<EpicoOutput[]>{
+    return this.http.get<EpicoOutput[]>(`${this.url}/projeto?Id=${id}`);
+  }
+
   create(model: Epico): Observable<Epico>{
     return this.http.post<Epico>(this.url, model)
   }

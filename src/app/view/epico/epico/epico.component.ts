@@ -154,19 +154,19 @@ export class EpicoComponent implements OnInit {
   getAllTipoPrioridade(){
     this.tiposPrioridade.push(
       {
-        id: "1", 
+        id: "ALTA", 
         descricao: TipoPrioridade.Alta
       }, 
       {
-        id: "2", 
+        id: "BAIXA", 
         descricao: TipoPrioridade.Baixa
       },
       {
-        id: "3", 
+        id: "NORMAL", 
         descricao: TipoPrioridade.Normal
       },
       {
-        id: "4", 
+        id: "URGENTE", 
         descricao: TipoPrioridade.Urgente
       }
     )
@@ -175,11 +175,11 @@ export class EpicoComponent implements OnInit {
   getAllCategoria(){
     this.categorias.push(
       {
-        id: "1", 
+        id: "NEGOCIO", 
         descricao: Categoria.Negocio
       },
       {
-        id: "2", 
+        id: "DESENVOLVIMENTO", 
         descricao: Categoria.Desenvolviumento
       }
     )

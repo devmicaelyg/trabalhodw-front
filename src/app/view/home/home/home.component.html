@@ -1,1 +1,66 @@
-<div>Página Inicial</div>
+<div class="container">
+  <div class="row">
+    <h1 class="titulo">Board</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field>
+        <mat-label>Selecione o projeto</mat-label>
+        <mat-select [(ngModel)]="projetoSelecionado" (closed)="buscarEpicos()">
+          @for (projeto of projetos; track projeto) {
+            <mat-option [value]="projeto.id">{{projeto.nome}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field>
+        <mat-label>Selecione o épico</mat-label>
+        <mat-select [(ngModel)]="epicoSelecionado" [disabled]="projetoSelecionado == undefined"
+        (closed)="getHistoriaDeUsuario()">
+          @for (epico of epicos; track epico) {
+            <mat-option [value]="epico.id">{{epico.descricao}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="example-container">
+      <cdk-accordion class="example-accordion">
+        @for (item of historiasDeUsuario; track item; let index = $index) {
+          <cdk-accordion-item
+      
+            #accordionItem="cdkAccordionItem"
+            class="example-accordion-item"
+            role="button"
+            tabindex="0"
+            [attr.id]="'accordion-header-' + index"
+            [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-' + index">
+            <div class="example-accordion-item-header" (click)="buscarTarefas(accordionItem, item)">
+              {{ item.descricao }}
+              <span class="example-accordion-item-description">
+                Clique para {{ accordionItem.expanded ? 'fechar' : 'abrir' }}
+              </span>
+            </div>
+            <div
+              class="example-accordion-item-body"
+              role="region"
+              [style.display]="accordionItem.expanded ? '' : 'none'"
+              [attr.id]="'accordion-body-' + index"
+              [attr.aria-labelledby]="'accordion-header-' + index">
+              <mat-list role="list">  
+                <span>Tarefas:</span> 
+                  @for (tarefa of tarefas; track tarefa) {
+                    <mat-list-item role="listitem">
+                      {{ tarefa.titulo }} - Status: {{ tarefa.statusTarefa }}
+                    </mat-list-item>
+                  }                
+              </mat-list>              
+            </div>
+          </cdk-accordion-item>
+        }
+      </cdk-accordion>   
+  </div>
+</div>

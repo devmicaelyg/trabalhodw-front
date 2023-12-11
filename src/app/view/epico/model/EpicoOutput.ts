@@ -1,3 +1,4 @@
+import { HistoriaDeUsuario } from './HistoriaDeUsuario';
 import { Projeto } from "../../projeto/model/Projeto";
 import { TipoEpico } from "../../tipo-epico/model/TipoEpico";
 import { Categoria } from "./Categoria";
@@ -11,14 +12,17 @@ export class EpicoOutput {
   Categoria: Categoria; 
   TipoEpico: TipoEpico;
   Projeto: Projeto; 
+  HistoriasDeUsuario: HistoriaDeUsuario[]; 
 
-  constructor(titulo: string, descricao: string, relevancia: TipoPrioridade, categoria: Categoria, tipoEpico: TipoEpico, projeto: Projeto, id?: string){
+  constructor(titulo: string, descricao: string, relevancia: TipoPrioridade, categoria: Categoria, 
+    tipoEpico: TipoEpico, projeto: Projeto, historiaDeusuario: HistoriaDeUsuario[], id?: string){
     this.Titulo = titulo;
     this.Descricao = descricao;
     this.Relevancia = relevancia;
     this.Categoria = categoria;
     this.TipoEpico = tipoEpico;
     this.Projeto = projeto;
+    this.HistoriasDeUsuario = historiaDeusuario;
   }
 
   get id(): string | undefined {
@@ -47,5 +51,9 @@ export class EpicoOutput {
 
   get projeto(): Projeto{
     return this.Projeto;
+  }
+
+  get historiasDeUsuario(): HistoriaDeUsuario[]{
+    return this.HistoriasDeUsuario;
   }
 }
