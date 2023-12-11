@@ -1,29 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TipoEpico } from '../model/TipoEpico';
-import { TipoEpicoService } from '../service/tipo-epico.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificacaoService } from '../../../services/notificacao.service';
-import { TipoEpicoComponent } from '../tipo-epico/tipo-epico.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TipoHistoriaUsuario } from '../model/TipoHistoriaUsuario';
+import { TipoHistoriaUsuarioService } from '../service/tipo-historia-usuario.service';
+import { TipoHistoriaUsuarioComponent } from '../tipo-historia-usuario/tipo-historia-usuario.component';
+import { TipoHistoriaUsuarioOutput } from '../model/TipoHistoriaUsuarioOutput';
 
 @Component({
+  selector: 'app-tipo-historia-usuario-list',
   standalone: true,
   imports: [ CommonModule, HttpClientModule, MatTableModule, MatIconModule, MatTooltipModule ],
-  selector: 'app-tipo-epico-list',
-  templateUrl: './tipo-epico-list.component.html',
-  styleUrl: './tipo-epico-list.component.css',
-  providers: [ TipoEpicoService, NotificacaoService ]
+  templateUrl: './tipo-historia-usuario-list.component.html',
+  styleUrl: './tipo-historia-usuario-list.component.css',
+  providers: [ TipoHistoriaUsuarioService, NotificacaoService ]
 })
-export class TipoEpicoListComponent implements OnInit {
-  tipos: TipoEpico[] = [];
+export class TipoHistoriaUsuarioListComponent implements OnInit {
+  tipos: TipoHistoriaUsuarioOutput[] = [];
   
   constructor(
-    private service: TipoEpicoService,
+    private service: TipoHistoriaUsuarioService,
     private notificacao: NotificacaoService,
     public dialog: MatDialog 
   ){}
@@ -44,7 +45,7 @@ export class TipoEpicoListComponent implements OnInit {
   }
 
   criar(): void {
-    const dialogRef = this.dialog.open(TipoEpicoComponent, {
+    const dialogRef = this.dialog.open(TipoHistoriaUsuarioComponent, {
       data: {tipo: null},
       hasBackdrop: false
     });
@@ -54,8 +55,8 @@ export class TipoEpicoListComponent implements OnInit {
     });
   }
 
-  editar(tipo: TipoEpico){
-    const dialogRef = this.dialog.open(TipoEpicoComponent, {
+  editar(tipo: TipoHistoriaUsuarioOutput){
+    const dialogRef = this.dialog.open(TipoHistoriaUsuarioComponent, {
       data: {tipo}
     });
 
@@ -64,11 +65,11 @@ export class TipoEpicoListComponent implements OnInit {
     });
   }
 
-  deletar(tipo: TipoEpico){
+  deletar(tipo: TipoHistoriaUsuarioOutput){
     this.service.delete(tipo.id).subscribe({
       next:(res) => {
         this.getAll()
-        this.notificacao.alert("Tipo de épico deletado com sucesso!", true);
+        this.notificacao.alert("Tipo de épico cadastrado com sucesso!", true);
       },
       error: (error) => {
         console.log(error)

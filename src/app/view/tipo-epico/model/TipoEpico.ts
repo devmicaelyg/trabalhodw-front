@@ -14,5 +14,9 @@ export class TipoEpico {
   get descricao() : string {
     return this.descricao;
   }
+
+  get tipoEpicoId(): string {
+    return this.tipoEpicoId;
+  }
  
 }
