@@ -1,27 +1,28 @@
-# TrabalhodwFront
+# Projeto Origami
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+### Tecnologia Utilizada
+Angular 17.0
 
-## Development server
+### Preparando o ambiente
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Faça o clone do repositório 
+2. Instale o node [Download | Node.js (nodejs.org)](https://nodejs.org/en/download/current)
+3. Instale o angular na sua maquina 
 
-## Code scaffolding
+```powershell
+npm install -g @angular/cli
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Abra o terminal na pasta que foi feito o clone e instale os pacotes do node 
 
-## Build
+```powershell
+npm install 
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Rode o programa
 
-## Running unit tests
+```powershell
+npm start 
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![image](https://github.com/devmicaelyg/trabalhodw-front/assets/65607825/687a4941-c412-4191-bd0c-c3c8b96225fe)
