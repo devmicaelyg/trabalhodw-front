@@ -24,12 +24,18 @@ mat-drawer h1{
   font-size: 30px;
 }
 
+mat-panel-title{
+  padding: 8px;
+  font-size: 26px;
+}
+
 mat-drawer img { 
   width: 40px;
   margin-right: 15px;
   margin-bottom: 9px;
 }
-mat-list-item {
+
+mat-list-item, mat-panel-title {
   cursor: pointer;
 }
 

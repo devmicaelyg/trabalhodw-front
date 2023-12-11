@@ -7,12 +7,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, 
-    RouterOutlet, MatSidenavModule, MatDividerModule, 
+    RouterOutlet, MatSidenavModule, MatDividerModule, MatExpansionModule,
     MatListModule, MatIconModule, RouterModule, MatButtonModule, MatToolbarModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

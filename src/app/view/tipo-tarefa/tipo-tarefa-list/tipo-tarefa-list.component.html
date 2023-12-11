@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="d-flex justify-content-around mt-5 mb-5">
+      <h1>Tipos de Tarefa</h1>
+      <button mat-raised-button class="success-button novo" (click)="criar()">
+        Cadastrar novo tipo de tarefa
+      </button>
+  </div>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <th>Descrição</th>
+        <th>Tipo de História de Usuário</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tipo of tipos">
+          <td> {{ tipo.descricao }}</td>
+          <td> {{ tipo.tipoHistoriaUsuario.descricao }} </td>
+          <td class="column-actions">
+            <button class="actions edit-button"
+              matTooltip="Editar/Ver Detalhes"
+              (click)="editar(tipo)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="actions cancel-button"
+              matTooltip="Deletar" 
+              (click)="deletar(tipo)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
