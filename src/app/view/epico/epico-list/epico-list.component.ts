@@ -53,9 +53,9 @@ export class EpicoListComponent implements OnInit{
     });
   }
 
-  editar(tipo: EpicoOutput){
+  editar(epico: EpicoOutput){
     const dialogRef = this.dialog.open(EpicoComponent, {
-      data: {tipo}
+      data: { epico }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -67,11 +67,11 @@ export class EpicoListComponent implements OnInit{
     this.service.delete(tipo.id).subscribe({
       next:(res) => {
         this.getAll()
-        this.notificacao.alert("Tipo de épico cadastrado com sucesso!", true);
+        this.notificacao.alert("Épico deletado com sucesso!", true);
       },
       error: (error) => {
         console.log(error)
-        this.notificacao.alert("Aconteceu um erro ao tentar deletar o tipo de épico. Tente novamente mais tarde!", false)
+        this.notificacao.alert("Aconteceu um erro ao tentar deletar o épico. Tente novamente mais tarde!", false)
       }
     })
   }

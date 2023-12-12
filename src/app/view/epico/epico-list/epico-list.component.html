@@ -13,7 +13,7 @@
         <th>Categoria</th>
         <th>Tipo Epico</th>
         <th>Projeto</th>
-        <!-- <th>Ações</th> -->
+        <th>Ações</th>
       </thead>
       <tbody>
         <tr *ngFor="let epico of epicos">
@@ -22,7 +22,7 @@
           <td> {{ epico?.categoria }}</td>
           <td> {{ epico.tipoEpico.descricao }} </td>
           <td> {{ epico.projeto.nome }} </td>
-          <!-- <td class="column-actions">
+          <td class="column-actions">
             <button class="actions edit-button"
               matTooltip="Editar/Ver Detalhes"
               (click)="editar(epico)">
@@ -33,7 +33,7 @@
               (click)="deletar(epico)">
               <mat-icon>delete</mat-icon>
             </button>
-          </td> -->
+          </td>
         </tr>
       </tbody>
     </table>

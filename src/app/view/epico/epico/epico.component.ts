@@ -17,9 +17,10 @@ import { Projeto } from '../../projeto/model/Projeto';
 import { MatSelectModule } from '@angular/material/select';
 import { TipoPrioridade } from '../model/TipoPrioridade';
 import { Categoria } from '../model/Categoria';
+import { EpicoOutput } from '../model/EpicoOutput';
 
 export interface DialogData {
-  epico: Epico
+  epico: EpicoOutput
 }
 
 export interface EnumModel {
@@ -58,9 +59,11 @@ export class EpicoComponent implements OnInit {
   ngOnInit(): void {
     if(this.data.epico != null){
       this.titulo = "Edição de Épico"
-      this.getById(this.data.epico.Id)
+      this.getById(this.data.epico.id)
       this.isEdit = true; 
     }
+
+    console.log(this.data.epico)
 
     this.form();
     this.getAllProjeto();
@@ -105,7 +108,7 @@ export class EpicoComponent implements OnInit {
       return
     }
     
-    this.service.update(this.data.epico.Id, this.epicoForm.value as Epico).subscribe({
+    this.service.update(this.data.epico.id, this.epicoForm.value as Epico).subscribe({
       next:() => {
         this.dialogRef.close(true)
         this.notificacao.alert("Epico editado com sucesso!", true)
@@ -118,11 +121,14 @@ export class EpicoComponent implements OnInit {
   }
 
   getById(id: string | undefined){
-    console.log(id);
     this.service.getById(id).subscribe({
       next: (res) => {
         this.epicoForm.controls["titulo"].setValue(this.data.epico.titulo)
         this.epicoForm.controls["descricao"].setValue(this.data.epico.descricao)
+        this.epicoForm.controls["tipoEpicoId"].setValue(this.data.epico.tipoEpico.id)
+        this.epicoForm.controls["projetoId"].setValue(this.data.epico.projeto.id)
+        this.epicoForm.controls["categoria"].setValue(this.data.epico.categoria)
+        this.epicoForm.controls["relevancia"].setValue(this.data.epico.relevancia)
       }, error: (error) => {
         console.log(error)
       }
